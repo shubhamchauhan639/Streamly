@@ -6,7 +6,7 @@ const SideBar = () => {
     const isMenu = useSelector((store) => store.app.isMenue)
     if(!isMenu) return null
   return (
-    <div className='w-64 h-screen bg-white shadow-lg px-5 py-6 overflow-y-auto'>
+   <div className="w-64 min-w-64 h-screen bg-white shadow-lg px-5 py-6">
 
       {/* Main Menu */}
       <ul className='space-y-2 border-b pb-5'>
