@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 const Body = () => {
   return (
-    <div className='flex h-[calc(100vh-70px)]'>
+   <div className='flex h-screen overflow-hidden'>
 
       {/* Sidebar */}
       <div className='w-64 overflow-y-auto '>
