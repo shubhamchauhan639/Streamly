@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { logo, Youtube_Search_Api } from '../utils/constants'
+import { logo, Youtube_Search_Api , search_logo } from '../utils/constants'
 import { useDispatch } from 'react-redux'
 import { toggelMenue } from '../utils/appSlice'
 import { useState } from 'react'
@@ -73,7 +73,11 @@ const Header = () => {
               key={s}
               className="flex items-center gap-4 px-5 py-3 hover:bg-gray-100 cursor-pointer text-lg"
             >
-              <span className="text-xl">🔍</span>
+              <img
+  src={search_logo}
+  alt="search"
+  className="w-5 h-5"
+/>
               <span>{s}</span>
             </li>
           ))}
