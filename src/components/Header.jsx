@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 const Header = () => {
   const [searchQuery , setSearchQuery] = useState("")
- 
+  const [suggestion , setSuggestion] = useState([]) 
 
   useEffect(()=>{
  console.log(searchQuery)
@@ -20,6 +20,7 @@ const Header = () => {
     const data = await fetch(Youtube_Search_Api + searchQuery)
     const json = await data.json()
     console.log(json[1])
+    setSuggestion(json[1])
   }
     const dispatch = useDispatch()
     const toggelButton = () => {
@@ -48,20 +49,41 @@ const Header = () => {
         </div>
 
         {/* Search Section */}
-        <div className='flex items-center w-[45%]'>
-          <input
-            type='text'
-            placeholder='Search videos...'
-            value={searchQuery}
-            onChange={(e)=>setSearchQuery(e.target.value)}
-            className='w-full border border-gray-300 px-4 py-2 rounded-l-full outline-none focus:border-red-500 text-sm'
-          />
+  <div className="w-full flex justify-center">
+  <div className="relative flex items-center w-[45%]">
 
-          <button className='bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-r-full font-medium transition-colors duration-200'>
-            Search
-          </button>
-        </div>
+    <input
+      type="text"
+      placeholder="Search"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      className="w-full border border-gray-300 px-5 py-2.5 rounded-l-full outline-none text-base focus:border-blue-500"
+    />
 
+    <button className="border border-l-0 border-gray-300 bg-gray-100 hover:bg-red-600 hover:text-white px-6 py-2.5 rounded-r-full">
+      Search
+    </button>
+
+    {suggestion.length > 0 && (
+      <div className="absolute top-14 left-0 w-full bg-white rounded-2xl shadow-2xl border border-gray-200 py-2 z-50">
+
+        <ul>
+          {suggestion.map((s) => (
+            <li
+              key={s}
+              className="flex items-center gap-4 px-5 py-3 hover:bg-gray-100 cursor-pointer text-lg"
+            >
+              <span className="text-xl">🔍</span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ul>
+
+      </div>
+    )}
+
+  </div>
+</div>
         {/* User Section */}
         <div>
           <img
