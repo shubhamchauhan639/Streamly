@@ -1,9 +1,26 @@
-import React from 'react'
-import { logo } from '../utils/constants'
+import React, { useEffect } from 'react'
+import { logo, Youtube_Search_Api } from '../utils/constants'
 import { useDispatch } from 'react-redux'
 import { toggelMenue } from '../utils/appSlice'
+import { useState } from 'react'
 
 const Header = () => {
+  const [searchQuery , setSearchQuery] = useState("")
+ 
+
+  useEffect(()=>{
+ console.log(searchQuery)
+ const timer = setTimeout(()=>searchSuggestion(),200);
+ return()=>{
+  clearTimeout(timer)
+ }
+  },[searchQuery])
+
+  const searchSuggestion = async()=>{
+    const data = await fetch(Youtube_Search_Api + searchQuery)
+    const json = await data.json()
+    console.log(json[1])
+  }
     const dispatch = useDispatch()
     const toggelButton = () => {
         dispatch(toggelMenue())
@@ -35,6 +52,8 @@ const Header = () => {
           <input
             type='text'
             placeholder='Search videos...'
+            value={searchQuery}
+            onChange={(e)=>setSearchQuery(e.target.value)}
             className='w-full border border-gray-300 px-4 py-2 rounded-l-full outline-none focus:border-red-500 text-sm'
           />
 
