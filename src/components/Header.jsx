@@ -7,6 +7,7 @@ import { useState } from 'react'
 const Header = () => {
   const [searchQuery , setSearchQuery] = useState("")
   const [suggestion , setSuggestion] = useState([]) 
+  const [showSuggestion, setShowSuggestion] = useState(false);
 
   useEffect(()=>{
  console.log(searchQuery)
@@ -57,6 +58,8 @@ const Header = () => {
       placeholder="Search"
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
+      onFocus={() => setShowSuggestion(true)}
+onBlur={() => setShowSuggestion(false)}
       className="w-full border border-gray-300 px-5 py-2.5 rounded-l-full outline-none text-base focus:border-blue-500"
     />
 
@@ -64,7 +67,7 @@ const Header = () => {
       Search
     </button>
 
-    {suggestion.length > 0 && (
+    {showSuggestion && suggestion.length > 0 && (
       <div className="absolute top-14 left-0 w-full bg-white rounded-2xl shadow-2xl border border-gray-200 py-2 z-50">
 
         <ul>
