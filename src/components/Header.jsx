@@ -1,33 +1,76 @@
 import React, { useEffect } from 'react'
 import { logo, Youtube_Search_Api , search_logo } from '../utils/constants'
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 import { toggelMenue } from '../utils/appSlice'
 import { useState } from 'react'
-
+import { cacheResults } from "../utils/searchSlice";
 const Header = () => {
   const [searchQuery , setSearchQuery] = useState("")
   const [suggestion , setSuggestion] = useState([]) 
   const [showSuggestion, setShowSuggestion] = useState(false);
 
-  useEffect(()=>{
- console.log(searchQuery)
- const timer = setTimeout(()=>searchSuggestion(),200);
- return()=>{
-  clearTimeout(timer)
- }
-  },[searchQuery])
+const searchCache = useSelector((store) => store.search);
 
-  const searchSuggestion = async()=>{
-    const data = await fetch(Youtube_Search_Api + searchQuery)
-    const json = await data.json()
-    console.log(json[1])
-    setSuggestion(json[1])
+const dispatch = useDispatch();
+
+useEffect(() => {
+  console.log(searchQuery)
+
+  // avoid empty api calls
+  if (!searchQuery.trim()) {
+    setSuggestion([]);
+    return;
   }
-    const dispatch = useDispatch()
-    const toggelButton = () => {
-        dispatch(toggelMenue())
+
+  const timer = setTimeout(() => {
+
+    // check cache first
+    if (searchCache[searchQuery]) {
+
+      setSuggestion(searchCache[searchQuery]);
+
+    } else {
+
+      searchSuggestion();
+
     }
 
+  }, 200);
+
+  return () => {
+    clearTimeout(timer);
+  };
+
+}, [searchQuery]);
+
+const searchSuggestion = async () => {
+
+  try {
+
+    const data = await fetch(
+      Youtube_Search_Api + searchQuery
+    );
+
+    const json = await data.json();
+
+    console.log(json[1]);
+
+    setSuggestion(json[1]);
+
+    // update cache
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+const toggelButton = () => {
+  dispatch(toggelMenue());
+};
   return (
     <header className='sticky top-0 z-50 bg-white shadow-md px-4 py-3'>
       <div className='flex items-center justify-between'>
