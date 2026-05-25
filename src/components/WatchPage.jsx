@@ -6,6 +6,7 @@ import { key, YOUTUBE_VIDEOS_API } from "../utils/constants";
 import CommentsContainer from "./CommentsContainer";
 
 const WatchPage = () => {
+  const [showMore, setShowMore] = useState(false);
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
 
@@ -70,8 +71,20 @@ const WatchPage = () => {
         </div>
 
         <div className="bg-gray-100 p-4 rounded-xl mt-4">
-          <p>{snippet.description}</p>
-        </div>
+           <p className="whitespace-pre-line text-sm leading-7">
+    {showMore
+      ? snippet.description
+      : snippet.description.slice(0, 250) + "..."}
+  </p>
+
+  <button
+    onClick={() => setShowMore(!showMore)}
+    className="font-semibold mt-3 hover:text-blue-600"
+  >
+    {showMore ? "Show less" : "Read more"}
+  </button>
+
+</div>
       </div>
       <CommentsContainer/>
     </div>
