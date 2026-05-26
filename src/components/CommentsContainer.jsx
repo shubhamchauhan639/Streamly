@@ -1,3 +1,6 @@
+import CommentsList from "./CommentsList";
+import commentsData from "../utils/mockData";
+ 
 const CommentsContainer = () => {
   return (
     <div className="mt-6">
@@ -9,3 +12,4 @@ const CommentsContainer = () => {
     </div>
   );
 };
+export default CommentsContainer
