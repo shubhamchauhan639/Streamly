@@ -1,11 +1,11 @@
-import React from 'react'
-
 const CommentsContainer = () => {
   return (
-    <div className='m-5 p-2'>
-   <h1 className='text-2xl font-bold'>Comments :</h1>
-    </div>
-  )
-}
+    <div className="mt-6">
+      <h1 className="text-2xl font-bold mb-4">
+        Comments
+      </h1>
 
-export default CommentsContainer
+      <CommentsList comments={commentsData} />
+    </div>
+  );
+};
