@@ -13,7 +13,7 @@ const Body = () => {
       <div className='flex h-[calc(100vh-70px)]'>
 
         {/* Sidebar */}
-        <div className='w-64 overflow-y-auto'>
+       <div className='flex h-[calc(100vh-70px)]'>
           <SideBar />
         </div>
 
