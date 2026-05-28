@@ -48,14 +48,14 @@ const WatchPage = () => {
     <div className="w-full p-5">
 
       {/* VIDEO + LIVE CHAT */}
-      <div className="flex gap-5">
+  <div className="flex gap-4 items-start">
 
         {/* LEFT SIDE */}
-        <div className="flex-1">
+      <div className="flex-1 max-w-[calc(100%-400px)]">
 
           {/* Video */}
           <iframe
-            className="rounded-2xl w-full max-w-7xl aspect-video"
+          className="rounded-2xl w-full aspect-video"
             src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube video player"
             allowFullScreen
@@ -108,10 +108,23 @@ const WatchPage = () => {
         </div>
 
         {/* RIGHT SIDE LIVE CHAT */}
-        <div className="w-[400px] sticky top-20 h-fit">
-          <LiveChat />
-        </div>
-
+    <div
+  className="
+  w-[380px]
+  h-[calc(100vh-110px)]
+  border
+  border-gray-300
+  rounded-2xl
+  bg-white
+  overflow-hidden
+  sticky
+  top-[80px]
+  flex
+  flex-col
+"
+>
+  <LiveChat />
+</div>
       </div>
 
       {/* COMMENTS */}
