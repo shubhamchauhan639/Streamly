@@ -29,15 +29,54 @@ const SearchResult = () => {
     console.log(json.items)
   };
 
-  return (
-      <div>
-      {videos.map((video) => (
-        <h1 key={video.id.videoId}>
-          {video.snippet.title}
-        </h1>
-      ))}
-    </div>
-  )
+return (
+  <div className="p-5">
+
+    {videos.map((video) => {
+
+      const { snippet } = video;
+
+      return (
+
+        <div
+          key={video.id.videoId}
+          className="flex gap-4 mb-8 cursor-pointer"
+        >
+
+          {/* Thumbnail */}
+          <img
+            className="w-[500px] h-[280px] rounded-2xl object-cover"
+            src={snippet.thumbnails.medium.url}
+            alt="thumbnail"
+          />
+
+          {/* Video Info */}
+          <div className="flex flex-col">
+
+            <h1 className="text-2xl font-semibold line-clamp-2">
+              {snippet.title}
+            </h1>
+
+            <p className="text-gray-600 mt-2">
+              {snippet.channelTitle}
+            </p>
+
+            <p className="text-gray-500 text-sm mt-1">
+              {snippet.publishedAt.slice(0, 10)}
+            </p>
+
+            <p className="text-gray-700 mt-4 line-clamp-3">
+              {snippet.description}
+            </p>
+
+          </div>
+
+        </div>
+      );
+    })}
+
+  </div>
+);
 }
 
 export default SearchResult
