@@ -45,24 +45,24 @@ const WatchPage = () => {
 
   return (
 
-    <div className="w-full p-5">
+    <div className="w-full py-5">
 
       {/* VIDEO + LIVE CHAT */}
-  <div className="flex gap-4 items-start">
+      <div className="flex items-start gap-5 px-4 w-full">
 
         {/* LEFT SIDE */}
-      <div className="flex-1 max-w-[calc(100%-400px)]">
+       <div className="w-[calc(100vw-520px)]">
 
           {/* Video */}
           <iframe
-          className="rounded-2xl w-full aspect-video"
+            className="rounded-2xl w-full h-[76vh]"
             src={`https://www.youtube.com/embed/${videoId}`}
             title="YouTube video player"
             allowFullScreen
           ></iframe>
 
           {/* Video Details */}
-          <div className="w-full max-w-7xl mt-4">
+          <div className="w-full mt-4">
 
             <h1 className="text-2xl font-bold">
               {snippet.title}
@@ -108,27 +108,29 @@ const WatchPage = () => {
         </div>
 
         {/* RIGHT SIDE LIVE CHAT */}
-    <div
-  className="
-  w-[380px]
-  h-[calc(100vh-110px)]
-  border
-  border-gray-300
-  rounded-2xl
-  bg-white
-  overflow-hidden
-  sticky
-  top-[80px]
-  flex
-  flex-col
-"
->
-  <LiveChat />
-</div>
+        <div
+          className="
+            w-[420px]
+            h-[calc(100vh-110px)]
+            border
+            border-gray-300
+            rounded-2xl
+            bg-white
+            overflow-hidden
+            sticky
+            top-5
+            flex
+            flex-col
+            shrink-0
+          "
+        >
+          <LiveChat />
+        </div>
+
       </div>
 
       {/* COMMENTS */}
-      <div className="w-full max-w-7xl mt-8">
+      <div className="w-full px-4 mt-8">
         <CommentsContainer />
       </div>
 
