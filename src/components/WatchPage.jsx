@@ -68,7 +68,7 @@ const WatchPage = () => {
               {snippet.title}
             </h1>
 
-            <div className="flex items-center justify-between mt-4">
+            <div className= "flex items-center justify-between mt-4">
 
               <div>
                 <h2 className="font-semibold text-lg">
