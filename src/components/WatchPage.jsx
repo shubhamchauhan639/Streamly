@@ -108,22 +108,21 @@ const WatchPage = () => {
         </div>
 
         {/* RIGHT SIDE LIVE CHAT */}
-        <div
-          className="
-            w-[420px]
-            h-[calc(100vh-110px)]
-            border
-            border-gray-300
-            rounded-2xl
-            bg-white
-            overflow-hidden
-            sticky
-            top-5
-            flex
-            flex-col
-            shrink-0
-          "
-        >
+     <div
+  className="
+  w-[420px]
+  h-[76vh]
+  border
+  border-gray-300
+  rounded-2xl
+  bg-white
+  overflow-hidden
+  sticky
+  top-[20px]
+  flex
+  flex-col
+"
+>
           <LiveChat />
         </div>
 
