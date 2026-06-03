@@ -196,10 +196,10 @@ const Header = () => {
         <div>
 
           <img
-  className="w-10 h-10 rounded-full cursor-pointer border-2 border-gray-300 hover:scale-105 transition-transform duration-200"
-  src="https://avatars.githubusercontent.com/u/9919?v=4"
-  alt="user"
-/>
+            className='w-10 h-10 rounded-full cursor-pointer border-2 border-gray-300 hover:scale-105 transition-transform duration-200'
+            src='https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original'
+            alt='user'
+          />
 
         </div>
 
