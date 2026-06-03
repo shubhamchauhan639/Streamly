@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider} from "react-router-dom"
 import MainContainer from "./components/MainContainer"
 import WatchPage from "./components/WatchPage"
 import SearchResult from "./components/SearchResult"
+import LikedVideos from "./components/LikedPage"
+import Subscriptions from "./components/SubscriptionPage"
 const appRouter = createBrowserRouter([{
   path : "/",
   element : <Body/>,
@@ -18,6 +20,15 @@ const appRouter = createBrowserRouter([{
    
     {   path: "/results",
   element: <SearchResult />},
+   {
+  path: "/liked",
+  element : <LikedVideos/>
+},
+{
+  path: "/subscriptions",
+  element: <Subscriptions />,
+},,
+
    
   ]
 }])

@@ -5,8 +5,16 @@ import { useSearchParams } from "react-router-dom";
 import { key } from "../utils/constants";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
+import { addLikedVideo , removeLikedVideo} from "../utils/likedVideoSlice";
+import { addSubscription , removeSubscription } from "../utils/subscribedChannelsSlice";
+import { useSelector } from "react-redux";
+
+
 
 const WatchPage = () => {
+  const likedVideos = useSelector((store) => store.likedVideos);
+const subscriptions = useSelector((store) => store.subscriptions);
+
 
   const [showMore, setShowMore] = useState(false);
 
@@ -42,10 +50,16 @@ const WatchPage = () => {
   if (!videoData) return null;
 
   const { snippet, statistics } = videoData;
+    const isLiked = likedVideos.some(
+  (video) => video.id === videoId
+);
+const isSubscribed = subscriptions.some(
+  (channel) => channel.channelTitle === snippet.channelTitle
+);
 
   return (
 
-  <div className="w-full py-5">
+  <div className="w-full py-5 ml-10">
 
     {/* VIDEO + LIVE CHAT */}
     <div className="flex gap-4 items-start">
@@ -55,7 +69,7 @@ const WatchPage = () => {
 
         {/* Video */}
         <iframe
-          className="rounded-2xl w-full h-[76vh]"
+          className="rounded-2xl w-full h-[68vh]"
           src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player"
           allowFullScreen
@@ -68,20 +82,72 @@ const WatchPage = () => {
             {snippet.title}
           </h1>
 
-          <div className="flex items-center justify-between mt-4">
+<div className="flex items-center justify-between mt-4">
 
-            <div>
-              <h2 className="font-semibold text-lg">
-                {snippet.channelTitle}
-              </h2>
-            </div>
+  <div>
+    <h2 className="font-semibold text-lg">
+      {snippet.channelTitle}
+    </h2>
 
-            <div className="flex gap-4">
-              <p>Like : {statistics.likeCount}</p>
-              <p>Views : {statistics.viewCount}</p>
-            </div>
+    <div className="flex gap-3 mt-3">
 
-          </div>
+    <button
+  onClick={() => {
+    if (isLiked) {
+      dispatch(removeLikedVideo(videoId));
+    } else {
+      dispatch(
+        addLikedVideo({
+          id: videoId,
+          title: snippet.title,
+          thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+          channelTitle: snippet.channelTitle,
+        })
+      );
+    }
+  }}
+  className={`px-4 py-2 rounded-full font-medium transition
+    ${
+      isLiked
+        ? "bg-blue-500 text-white"
+        : "bg-white border border-gray-300 text-black"
+    }`}
+>
+  👍 {isLiked ? "Liked" : "Like"}
+</button>
+
+     <button
+  onClick={() => {
+    if (isSubscribed) {
+      dispatch(removeSubscription(snippet.channelTitle));
+    } else {
+      dispatch(
+        addSubscription({
+          channelTitle: snippet.channelTitle,
+        })
+      );
+    }
+  }}
+  className={`px-4 py-2 rounded-full font-medium transition
+    ${
+      isSubscribed
+        ? "bg-red-600 text-white"
+        : "bg-white border border-gray-300 text-black"
+    }`}
+>
+  {isSubscribed ? "Subscribed" : "Subscribe"}
+</button>
+
+    </div>
+
+  </div>
+
+  <div className="flex gap-4">
+    <p>👍 {statistics.likeCount}</p>
+    <p>👁️ {statistics.viewCount}</p>
+  </div>
+
+</div>
 
           {/* Description */}
           <div className="bg-gray-100 p-4 rounded-xl mt-4">
