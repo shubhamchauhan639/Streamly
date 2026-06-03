@@ -30,22 +30,28 @@ const SideBar = () => {
       </ul>
 
       {/* Subscription */}
-      <div className='mt-6'>
-        <h1 className='text-lg font-bold mb-3 text-gray-800'>
-          Subscriptions
-        </h1>
+     <div className='mt-6'>
+  <h1 className='text-lg font-bold mb-3 text-gray-800'>
+    Subscriptions
+  </h1>
 
-      <ul className="space-y-2">
-  {subscriptions.slice(0, 5).map((channel, index) => (
-    <li
-      key={index}
-      className="px-4 py-2 rounded-lg hover:bg-gray-100 cursor-pointer transition duration-200"
-    >
-      📡 {channel.channelTitle}
-    </li>
-  ))}
-</ul>
-      </div>
+  <ul className='space-y-2'>
+    {subscriptions.length === 0 ? (
+      <li className='px-4 py-2 text-gray-500'>
+        Subscribe to channels
+      </li>
+    ) : (
+      subscriptions.slice(0, 5).map((channel, index) => (
+        <li
+          key={index}
+          className='px-4 py-2 rounded-lg hover:bg-gray-100 cursor-pointer transition duration-200'
+        >
+          📡 {channel.channelTitle}
+        </li>
+      ))
+    )}
+  </ul>
+</div>
 
       {/* You Section */}
       <div className='mt-6'>
