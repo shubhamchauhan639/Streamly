@@ -27,7 +27,7 @@ const appRouter = createBrowserRouter([{
 {
   path: "/subscriptions",
   element: <Subscriptions />,
-},,
+},
 
    
   ]
