@@ -2,10 +2,20 @@ import React from 'react'
 import SideBar from './SideBar'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header'
+import { useDispatch } from 'react-redux'
+import { closeMenu } from '../utils/appSlice'
+import { useEffect } from 'react'
 
 const Body = () => {
 
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      dispatch(closeMenu());
+    }
+  }, []);
 
   const isWatchPage =
     location.pathname === "/watch";
@@ -17,7 +27,7 @@ const Body = () => {
       {/* Header */}
       <Header />
 
-      <div className='flex h-[calc(100vh-70px)]'>
+      <div className='flex h-[calc(100vh-70px)] relative'>
 
         {/* Sidebar */}
         <div

@@ -111,7 +111,7 @@ const Header = () => {
 
           <Link to="/">
             <img
-              className='w-36 cursor-pointer object-contain'
+              className='w-24 sm:w-36 cursor-pointer object-contain'
               src={logo}
               alt='logo'
             />
@@ -122,7 +122,7 @@ const Header = () => {
         {/* Search Section */}
         <div className="w-full flex justify-center">
 
-          <div className="relative flex items-center w-[45%]">
+          <div className="relative flex items-center w-full sm:w-[80%] md:w-[60%] lg:w-[45%] px-2 sm:px-0">
 
             <input
               type="text"
@@ -145,13 +145,13 @@ const Header = () => {
                 }
               }}
 
-              className="w-full border border-gray-300 px-5 py-2.5 rounded-l-full outline-none text-base focus:border-blue-500"
+              className="w-full border border-gray-300 px-3 sm:px-5 py-2 sm:py-2.5 rounded-l-full outline-none text-base focus:border-blue-500"
             />
 
             {/* SEARCH BUTTON WORKING */}
             <button
               onClick={handleSearch}
-              className="border border-l-0 border-gray-300 bg-gray-100 hover:bg-red-600 hover:text-white px-6 py-2.5 rounded-r-full"
+              className="border border-l-0 border-gray-300 bg-gray-100 hover:bg-red-600 hover:text-white px-3 sm:px-6 py-2 sm:py-2.5 rounded-r-full"
             >
               Search
             </button>

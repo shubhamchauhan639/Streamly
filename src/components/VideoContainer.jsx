@@ -17,7 +17,7 @@ getVideos()
     setVideos(json.items)
   }
   return (
-  <div className="grid grid-cols-3 gap-6 p-5">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-2 sm:p-5">
       {videos.map((video) => (
         <Link key={video.id} to={"/watch?v="+video.id}>
           <VideoCard info={video} />

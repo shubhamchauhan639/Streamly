@@ -40,12 +40,12 @@ return (
 
         <div
           key={video.id.videoId}
-          className="flex gap-4 mb-8 cursor-pointer"
+          className="flex flex-col md:flex-row gap-4 mb-8 cursor-pointer"
         >
 
           {/* Thumbnail */}
           <img
-            className="w-[500px] h-[280px] rounded-2xl object-cover"
+            className="w-full md:w-[400px] xl:w-[500px] h-[200px] sm:h-[280px] rounded-2xl object-cover"
             src={snippet.thumbnails.medium.url}
             alt="thumbnail"
           />
@@ -53,7 +53,7 @@ return (
           {/* Video Info */}
           <div className="flex flex-col">
 
-            <h1 className="text-2xl font-semibold line-clamp-2">
+            <h1 className="text-lg md:text-2xl font-semibold line-clamp-2">
               {snippet.title}
             </h1>
 

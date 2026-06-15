@@ -59,17 +59,17 @@ const isSubscribed = subscriptions.some(
 
   return (
 
-  <div className="w-full py-5 ml-10">
+  <div className="w-full py-5 px-2 md:px-5 lg:ml-10">
 
     {/* VIDEO + LIVE CHAT */}
-    <div className="flex gap-4 items-start">
+    <div className="flex flex-col lg:flex-row gap-4 items-start w-full">
 
       {/* LEFT SIDE */}
-      <div className="w-[calc(100vw-520px)]">
+      <div className="w-full lg:w-[calc(100vw-450px)] xl:w-[calc(100vw-520px)]">
 
         {/* Video */}
         <iframe
-          className="rounded-2xl w-full h-[68vh]"
+          className="rounded-2xl w-full h-[30vh] sm:h-[45vh] lg:h-[68vh] aspect-video"
           src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player"
           allowFullScreen
@@ -82,7 +82,7 @@ const isSubscribed = subscriptions.some(
             {snippet.title}
           </h1>
 
-<div className="flex items-center justify-between mt-4">
+<div className="flex flex-col md:flex-row md:items-center justify-between mt-4">
 
   <div>
     <h2 className="font-semibold text-lg">
@@ -142,7 +142,7 @@ const isSubscribed = subscriptions.some(
 
   </div>
 
-  <div className="flex gap-4">
+  <div className="flex gap-4 mt-4 md:mt-0">
     <p>👍 {statistics.likeCount}</p>
     <p>👁️ {statistics.viewCount}</p>
   </div>
@@ -181,8 +181,8 @@ const isSubscribed = subscriptions.some(
       {/* RIGHT SIDE LIVE CHAT */}
       <div
         className="
-        w-[420px]
-        h-[76vh]
+        w-full lg:w-[400px] xl:w-[420px]
+        h-[50vh] lg:h-[76vh]
         border
         border-gray-300
         rounded-2xl
